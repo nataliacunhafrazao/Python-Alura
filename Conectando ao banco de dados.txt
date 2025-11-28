@@ -1,0 +1,27 @@
+#Baixando o pacote  do conector Mysql em python com o comando
+pip install mysql-connector-python
+
+#Importando o conector do Mysql
+import mysql.connector
+
+#Parâmetros de conecção ao banco de dados: O Local host é o indereço ip da máquina , O data base se refere ao banco de dados em si com o nome do banco,o usuário e a senha do mesmo
+con = mysql.connector.connect(host = 'localhost',database = 'db_MeusLivros',user = 'root', password = ' ')
+
+#Bloco de código para verificar se estamos conectados ao banco de dados
+if con.is_connected():
+    db_info = con.get_server_info()
+    print("Conectado ao servidor MYSQL versão" , db_info)
+    cursor = con.cursor()
+     cursor.execute("select database();")
+     linha = cursor.fetchone()
+      print("Conectado aos banco de dados",linha)
+
+
+
+#Encerrando a conexão do banco de dados
+
+if con.is_connected():
+    cursor.close()
+    con.close()
+    print("A Conexão ao MYSQL foi encerrada")
+
